@@ -1,5 +1,5 @@
 {
-  "name": "observables",
+  "name": "observable",
   "version": "0.0.1",
   "description": "tc-39 compatible observable",
   "main": "index.js",
@@ -10,17 +10,17 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/jdmichaud/observables.git"
+    "url": "git+https://github.com/jdmichaud/observable.git"
   },
   "keywords": [
-    "observables"
+    "observable"
   ],
   "author": "jdmichaud",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/jdmichaud/observables/issues"
+    "url": "https://github.com/jdmichaud/observable/issues"
   },
-  "homepage": "https://github.com/jdmichaud/observables#readme",
+  "homepage": "https://github.com/jdmichaud/observable#readme",
   "devDependencies": {
     "rollup": "^0.61.1",
     "rollup-plugin-typescript2": "^0.15.0",
