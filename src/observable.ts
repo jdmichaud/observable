@@ -14,7 +14,13 @@ export class Observable<T> {
         complete,
       }, this.subscriber);
     } else {
-      return new Subscription<T>(observer, this.subscriber);
+      return new Subscription<T>({
+        start: observer.start !== undefined ? observer.start : () => {},
+        next: observer.next !== undefined ? observer.next : () => {},
+        error: observer.error !== undefined ? observer.error : () => {},
+        complete:
+          observer.complete !== undefined ? observer.complete : () => {},
+      }, this.subscriber);
     }
   }
 }

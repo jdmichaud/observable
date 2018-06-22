@@ -1,10 +1,10 @@
-import { Observer } from "./observer";
+import { FullObserver, Observer } from "./observer";
 
 export class Subscription<T> {
   public closed = false;
   private cleanup: () => void;
 
-  constructor(private observer: Observer<T>,
+  constructor(private observer: FullObserver<T>,
               private subscriber: SubscriberFunction<T>) {
     this.observer.start(this);
     if (!this.closed) {
