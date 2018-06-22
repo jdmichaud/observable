@@ -1,0 +1,30 @@
+{
+  "name": "observables",
+  "version": "0.0.1",
+  "description": "tc-39 compatible observable",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "lint": "tslint -c tslint.json 'src/**/*.ts'",
+    "build": "rollup -c rollup.config.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jdmichaud/observables.git"
+  },
+  "keywords": [
+    "observables"
+  ],
+  "author": "jdmichaud",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/jdmichaud/observables/issues"
+  },
+  "homepage": "https://github.com/jdmichaud/observables#readme",
+  "devDependencies": {
+    "rollup": "^0.61.1",
+    "rollup-plugin-typescript2": "^0.15.0",
+    "tslint": "^5.10.0",
+    "typescript": "^2.9.2"
+  }
+}
