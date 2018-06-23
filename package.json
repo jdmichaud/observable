@@ -1,6 +1,6 @@
 {
   "name": "observable",
-  "version": "0.0.1",
+  "version": "0.1.0",
   "description": "tc-39 compatible observable",
   "main": "index.js",
   "scripts": {
