@@ -3,6 +3,7 @@ import { SubscriberFunction, Subscription } from "./subscription";
 
 export class Observable<T> {
   constructor(private subscriber: SubscriberFunction<T>) {}
+
   public subscribe(observer: Observer<T> | ((value: T) => void),
                    error: (errValue: any) => void = () => {},
                    complete: () => void = () => {}): Subscription<T> {
