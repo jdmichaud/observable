@@ -1,4 +1,4 @@
-import { IdleSubject, Subject } from './subject';
+import { Subject } from './subject';
 
 describe('Subject', () => {
   it('shall subscribe multiple observer', () => {
@@ -35,21 +35,5 @@ describe('Subject', () => {
     subject.subscribe(nextSpy);
     expect(nextSpy).toHaveBeenNthCalledWith(1, 42);
     expect(nextSpy).toHaveBeenNthCalledWith(2, 666);
-  });
-});
-
-describe('IdleSubject', () => {
-  it('shall call the observer on idle period', () => {
-    let callback;
-    const window = {
-      requestIdleCallback: (f) => callback = f,
-    };
-    const subject = new IdleSubject<number>(window as any);
-    const nextSpy = jest.fn();
-    subject.subscribe(nextSpy);
-    subject.next(42);
-    expect(nextSpy).not.toHaveBeenCalled();
-    callback();
-    expect(nextSpy).toHaveBeenCalledWith(42);
   });
 });
