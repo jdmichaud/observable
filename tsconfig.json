@@ -1,9 +1,13 @@
 {
   "compilerOptions": {
     "target": "ES5",
-    "sourceMap": true
+    "sourceMap": true,
+    "declaration": true
   },
   "include": [
     "src/**/*"
+  ],
+  "exclude": [
+    "src/**/*.spec.ts"
   ]
  }
