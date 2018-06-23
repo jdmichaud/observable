@@ -6,7 +6,8 @@
   "scripts": {
     "test": "jest",
     "lint": "tslint -c tslint.json 'src/**/*.ts' -e 'src/**/*.spec.ts'",
-    "build": "rollup -c rollup.config.js"
+    "build": "rollup -c rollup.config.js",
+    "ppublish": "npm run lint && npm test && npm run build && npm publish"
   },
   "repository": {
     "type": "git",
