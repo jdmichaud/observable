@@ -5,6 +5,7 @@
   "rules": {
     "no-empty": [true, "allow-empty-functions"],
     "object-literal-sort-keys": false,
-    "interface-name": [true, "never-prefix"]
+    "interface-name": [true, "never-prefix"],
+    "quotemark": [true, "single"]
   }
 }

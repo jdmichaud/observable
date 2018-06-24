@@ -1,4 +1,4 @@
-import { Subscription } from "./subscription";
+import { Subscription } from './subscription';
 
 export interface Observer<T> {
   start?(subscription: Subscription<T>): void;

@@ -1,5 +1,5 @@
-import { Observable } from "./observable";
-import { Observer } from "./observer";
+import { Observable } from './observable';
+import { Observer } from './observer';
 
 export class Subject<T> extends Observable<T> {
   protected observers: Array<Observer<T>> = [];

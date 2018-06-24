@@ -1,4 +1,4 @@
-import { FullObserver, Observer } from "./observer";
+import { FullObserver, Observer } from './observer';
 
 export class Subscription<T> {
   public closed = false;

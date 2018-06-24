@@ -1,4 +1,4 @@
-import { Subject } from "./subject";
+import { Subject } from './subject';
 
 /**
  * This Subject does not broadcast the value immediatly but only when the
