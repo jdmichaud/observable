@@ -8,7 +8,7 @@ An implementation of the Observable interfaces as presented in the
 ```javascript
 const observable = new Observable(observer => {
   observer.next(42);
-  return () {};
+  return () => {};
 })
 
 observable.subscribe(value => console.log(value));
@@ -21,7 +21,7 @@ outputs:
 
 # Subject extension
 
-In addition to the interfaces as described in the tc-39 extension, more
+In addition to the interfaces as described in the tc-39 proposal, more
 convenient interfaces are proposed as the `Subject`:
 ```javascript
 const subject = new Subject();
@@ -38,7 +38,7 @@ outputs:
 error!
 ```
 
-## There can be multiple observer to a subject
+## There can be multiple observers to a subject
 
 ```javascript
 const subject = new Subject();
