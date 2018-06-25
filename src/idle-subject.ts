@@ -10,7 +10,7 @@ export class IdleSubject<T> extends Subject<T> {
   protected idleHandle: number = 0;
 
   /**
-   * window: the brower's window object or equvalient
+   * window: the brower's window object or equivalent
    * timeout: optional parameter provided to requestIdCallback
    */
   constructor(private window: Window, private timeout?: number) {
@@ -21,7 +21,7 @@ export class IdleSubject<T> extends Subject<T> {
     if (this.idleHandle !== 0) {
       (this.window as any).cancelIdleCallback(this.idleHandle);
     }
-    (this.window as any).requestIdleCallback(() => {
+    this.idleHandle = (this.window as any).requestIdleCallback(() => {
       // Broadcast to all observers
       this.observers.forEach((observer) => observer.next(value), {
         timeout: this.timeout,
