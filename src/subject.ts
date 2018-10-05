@@ -4,6 +4,7 @@ import { Observer } from './observer';
 export class Subject<T> extends Observable<T> {
   protected observers: Array<Observer<T>> = [];
   protected memory: T[] = [];
+  protected errValue: any = undefined;
 
   // memorySize: number of event saved and replayed on subscription
   constructor(private memorySize: number = 0) {
@@ -24,11 +25,16 @@ export class Subject<T> extends Observable<T> {
   }
 
   public error(errValue: any) {
+    this.errValue = errValue;
     this.observers.forEach((observer) => observer.next(errValue));
   }
 
   public complete(errValue: any) {
     this.observers.forEach((observer) => observer.complete());
+  }
+
+  protected hasError() {
+    return this.errValue !== undefined;
   }
 
   protected remember(value: T): void {
