@@ -18,10 +18,10 @@ export class Subject<T> extends Observable<T> {
   }
 
   public next(value: T) {
-    // Broadcast to all observers
-    this.observers.forEach((observer) => observer.next(value));
     // Save the value for later replay on subscription
     this.remember(value);
+    // Broadcast to all observers
+    this.observers.forEach((observer) => observer.next(value));
   }
 
   public error(errValue: any) {
