@@ -2,7 +2,7 @@ import { Observable } from './observable';
 import { Observer } from './observer';
 
 export class Subject<T> extends Observable<T> {
-  protected observers: Array<Observer<T>> = [];
+  protected observers: Observer<T>[] = [];
   protected memory: T[] = [];
   protected errValue: any = undefined;
 
@@ -29,7 +29,7 @@ export class Subject<T> extends Observable<T> {
     this.observers.forEach((observer) => observer.next(errValue));
   }
 
-  public complete(errValue: any) {
+  public complete() {
     this.observers.forEach((observer) => observer.complete());
   }
 
@@ -40,7 +40,7 @@ export class Subject<T> extends Observable<T> {
   protected remember(value: T): void {
     if (this.memorySize > 0) {
       if (this.memory.length >= this.memorySize) {
-        const [head, ...tail] = this.memory;
+        const [_head, ...tail] = this.memory;
         this.memory = tail;
       }
       this.memory.push(value);

@@ -17,7 +17,7 @@ export class IdleSubject<T> extends Subject<T> {
     super(0);
   }
 
-  public next(value: T) {
+  public next(value: T): void {
     if (this.idleHandle !== 0) {
       (this.window as any).cancelIdleCallback(this.idleHandle);
     }

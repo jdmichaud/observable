@@ -5,7 +5,7 @@ export class Subscription<T> {
   private cleanup: () => void;
 
   constructor(private observer: FullObserver<T>,
-              private subscriber: SubscriberFunction<T>) {
+    private subscriber: SubscriberFunction<T>) {
     this.observer.start(this);
     if (!this.closed) {
       this.cleanup = this.subscriber(observer);
