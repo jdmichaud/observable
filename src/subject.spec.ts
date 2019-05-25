@@ -23,17 +23,4 @@ describe('Subject', () => {
     expect(nextSpy1).toHaveBeenCalledWith(42);
     expect(nextSpy2).not.toHaveBeenCalled();
   });
-
-  it('shall keep a memory of past events', () => {
-    const subject = new Subject<number>(2);
-    subject.next(0);
-    subject.next(0);
-    subject.next(0);
-    subject.next(42);
-    subject.next(666);
-    const nextSpy = jest.fn();
-    subject.subscribe(nextSpy);
-    expect(nextSpy).toHaveBeenNthCalledWith(1, 42);
-    expect(nextSpy).toHaveBeenNthCalledWith(2, 666);
-  });
 });

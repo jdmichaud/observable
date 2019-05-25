@@ -1,4 +1,4 @@
-import { Subject } from './subject';
+import { ReplaySubject } from './replay-subject';
 
 /**
  * This Subject does not broadcast the value immediatly but only when the
@@ -6,7 +6,7 @@ import { Subject } from './subject';
  * Observers should not expect to receive all updates but only the last one
  * received before the browser became idle.
  */
-export class IdleSubject<T> extends Subject<T> {
+export class IdleSubject<T> extends ReplaySubject<T> {
   protected idleHandle: number = 0;
 
   /**

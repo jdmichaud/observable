@@ -5,11 +5,27 @@ import { Subject } from './subject';
  * Basically a variable with subscription.
  */
 export class BehaviorSubject<T> extends Subject<T> {
+  protected last: T;
+  protected errValue: any = undefined;
+
   /**
+   * Construct a Subject by providing an intial value which will be immediatly
+   * forwarded to the subscribed Observers.
    */
   constructor(private value: T) {
-    super(1);
+    super();
+    this.last = value;
     this.next(value);
+  }
+
+  public error(errValue: any) {
+    this.errValue = errValue;
+    super.error(errValue);
+  }
+
+  public next(value: T) {
+    this.last = value;
+    super.next(value);
   }
 
   /**
@@ -19,7 +35,10 @@ export class BehaviorSubject<T> extends Subject<T> {
     if (this.hasError()) {
       throw this.errValue;
     }
-    return this.memory[this.memory.length - 1];
+    return this.last;
   }
 
+  protected hasError() {
+    return this.errValue !== undefined;
+  }
 }
