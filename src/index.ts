@@ -3,5 +3,5 @@ export { Observable } from './observable';
 export { Observer } from './observer';
 export { Subject } from './subject';
 export { IdleSubject } from './idle-subject';
-import { ReplaySubject } from './replay-subject';
+export { ReplaySubject } from './replay-subject';
 export { SubscriberFunction, Subscription } from './subscription';
