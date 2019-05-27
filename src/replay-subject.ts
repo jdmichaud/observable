@@ -3,7 +3,7 @@ import { Observer } from './observer';
 import { SubscriberFunction, Subscription } from './subscription';
 
 /**
- * Will replay the previoujs calls to next, complete and error to a newly
+ * Will replay the previous calls to next, complete and error to a newly
  * subscribe subject.
  */
 export class ReplaySubject<T> extends Observable<T> {
