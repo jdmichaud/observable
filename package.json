@@ -2,7 +2,7 @@
   "name": "@jdmichaud/observable",
   "version": "0.3.3",
   "description": "tc-39 compatible observable",
-  "main": "index.js",
+  "main": "dist/index.js",
   "scripts": {
     "all": "npm run lint && npm test && npm run build",
     "test": "jest",
