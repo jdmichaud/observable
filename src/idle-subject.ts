@@ -7,7 +7,7 @@ import { ReplaySubject } from './replay-subject';
  * received before the browser became idle.
  */
 export class IdleSubject<T> extends ReplaySubject<T> {
-  protected idleHandle: number = 0;
+  protected idleHandle = 0;
 
   /**
    * window: the brower's window object or equivalent

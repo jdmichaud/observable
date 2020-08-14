@@ -14,16 +14,16 @@ export class Subject<T> extends Observable<T> {
     });
   }
 
-  public next(value: T) {
+  public next(value: T): void {
     // Broadcast to all observers
     this.observers.forEach((observer) => observer.next(value));
   }
 
-  public error(errValue: any) {
-    this.observers.forEach((observer) => observer.next(errValue));
+  public error(errValue: unknown): void {
+    this.observers.forEach((observer) => observer.error(errValue));
   }
 
-  public complete() {
+  public complete(): void {
     this.observers.forEach((observer) => observer.complete());
   }
 }

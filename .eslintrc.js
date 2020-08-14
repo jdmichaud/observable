@@ -8,17 +8,19 @@ module.exports =  {
     sourceType:  'module',  // Allows for the use of imports
   },
   rules:  {
+    'semi': ['error', 'always'],
     // Place to specify ESLint rules. Can be used to overwrite rules specified from the extended configs
     '@typescript-eslint/indent': ['error', 2],
     '@typescript-eslint/explicit-member-accessibility': 'off',
     '@typescript-eslint/no-parameter-properties': 'off',
     '@typescript-eslint/no-explicit-any': 'off',
-    '@typescript-eslint/explicit-function-return-type': {
+    '@typescript-eslint/explicit-function-return-type': ['error', {
       allowExpressions: true,
-    },
+    }],
     // Disabled due to multiples bugs:
     // * https://github.com/typescript-eslint/typescript-eslint/issues/363
     // * https://github.com/typescript-eslint/typescript-eslint/issues/316
     '@typescript-eslint/no-unused-vars': 'off',
+    '@typescript-eslint/no-empty-function': 'off',
   },
 };

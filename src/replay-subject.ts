@@ -10,7 +10,7 @@ export class ReplaySubject<T> extends Observable<T> {
   protected observers: Observer<T>[] = [];
   protected memory: T[] = [];
   protected errValue: any = undefined;
-  protected completed: boolean = false;
+  protected completed = false;
 
   // memorySize: number of event saved and replayed on subscription
   constructor(private memorySize: number) {
@@ -28,24 +28,24 @@ export class ReplaySubject<T> extends Observable<T> {
     });
   }
 
-  public next(value: T) {
+  public next(value: T): void {
     // Save the value for later replay on subscription
     this.remember(value);
     // Broadcast to all observers
     this.observers.forEach((observer) => observer.next(value));
   }
 
-  public error(errValue: any) {
+  public error(errValue: unknown): void {
     this.errValue = errValue;
-    this.observers.forEach((observer) => observer.next(errValue));
+    this.observers.forEach((observer) => observer.error(errValue));
   }
 
-  public complete() {
+  public complete(): void {
     this.completed = true;
     this.observers.forEach((observer) => observer.complete());
   }
 
-  protected hasError() {
+  protected hasError(): boolean {
     return this.errValue !== undefined;
   }
 

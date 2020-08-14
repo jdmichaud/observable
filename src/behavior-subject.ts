@@ -18,12 +18,12 @@ export class BehaviorSubject<T> extends Subject<T> {
     this.next(value);
   }
 
-  public error(errValue: any) {
+  public error(errValue: unknown): void {
     this.errValue = errValue;
     super.error(errValue);
   }
 
-  public next(value: T) {
+  public next(value: T): void {
     this.last = value;
     super.next(value);
   }
@@ -38,7 +38,7 @@ export class BehaviorSubject<T> extends Subject<T> {
     return this.last;
   }
 
-  protected hasError() {
+  protected hasError(): boolean {
     return this.errValue !== undefined;
   }
 }
