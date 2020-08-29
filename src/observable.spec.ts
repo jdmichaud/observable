@@ -153,7 +153,7 @@ describe('Observable', () => {
         return () => {};
       });
 
-      let observedValue: string;
+      let observedValue = '';
       Observable.chain(observable, value => value.toString()).subscribe({
         next: value => observedValue = value,
       });

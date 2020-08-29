@@ -2,11 +2,11 @@ import { FullObserver, Observer } from './observer';
 
 export class Subscription<T> {
   public closed = false;
-  private cleanup: () => void;
+  private cleanup?: () => void;
 
   constructor(private observer: FullObserver<T>,
     private subscriber: SubscriberFunction<T>) {
-    this.observer.start(this);
+    observer.start(this);
     if (!this.closed) {
       this.cleanup = this.subscriber(observer);
     }
@@ -20,4 +20,4 @@ export class Subscription<T> {
   }
 }
 
-export type SubscriberFunction<T> = (observer: Observer<T>) => () => void;
+export type SubscriberFunction<T> = (observer: FullObserver<T>) => () => void;

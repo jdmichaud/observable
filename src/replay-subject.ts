@@ -1,5 +1,5 @@
 import { Observable } from './observable';
-import { Observer } from './observer';
+import { FullObserver, Observer } from './observer';
 import { SubscriberFunction, Subscription } from './subscription';
 
 /**
@@ -7,14 +7,14 @@ import { SubscriberFunction, Subscription } from './subscription';
  * subscribe subject.
  */
 export class ReplaySubject<T> extends Observable<T> {
-  protected observers: Observer<T>[] = [];
+  protected observers: FullObserver<T>[] = [];
   protected memory: T[] = [];
   protected errValue: any = undefined;
   protected completed = false;
 
   // memorySize: number of event saved and replayed on subscription
   constructor(private memorySize: number) {
-    super((observer: Observer<T>): () => void => {
+    super((observer: FullObserver<T>): () => void => {
       this.observers.push(observer);
       this.memory.forEach((value) => observer.next(value));
       if (this.hasError()) {
@@ -32,17 +32,17 @@ export class ReplaySubject<T> extends Observable<T> {
     // Save the value for later replay on subscription
     this.remember(value);
     // Broadcast to all observers
-    this.observers.forEach((observer) => observer.next(value));
+    this.observers.forEach(observer => observer.next(value));
   }
 
   public error(errValue: unknown): void {
     this.errValue = errValue;
-    this.observers.forEach((observer) => observer.error(errValue));
+    this.observers.forEach(observer => observer.error(errValue));
   }
 
   public complete(): void {
     this.completed = true;
-    this.observers.forEach((observer) => observer.complete());
+    this.observers.forEach(observer => observer.complete());
   }
 
   protected hasError(): boolean {

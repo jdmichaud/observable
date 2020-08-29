@@ -1,4 +1,4 @@
-import { Observer } from './observer';
+import { FullObserver, Observer } from './observer';
 import { SubscriberFunction, Subscription } from './subscription';
 
 type Observed<T> = T extends Observable<infer U> ? U : T;
@@ -35,19 +35,19 @@ export class Observable<T> {
     return new Observable(observer => {
       function next(): void {
         if (values.every(v => v !== undefined)) {
-          observer.next(values as any);
+          observer.next !== undefined && observer.next(values as any);
         }
       }
 
       function complete(): void {
         if (completionState.every(c => c)) {
-          observer.complete();
+          observer.complete !== undefined && observer.complete();
         }
       }
 
       observables.forEach((observable, index) => {
         observable.subscribe({
-          next: value => {
+          next: (value: any) => {
             values[index] = value;
             next();
           },
@@ -64,7 +64,7 @@ export class Observable<T> {
   }
 
   static complete<T>(value?: T): Observable<T> {
-    return new Observable(observer => {
+    return new Observable((observer: FullObserver<T>) => {
       if (value !== undefined) {
         observer.next(value);
       }
@@ -91,7 +91,7 @@ export class Observable<T> {
    * ```
    */
   static chain<T, U>(observable: Observable<T>,
-    next: (value: T, error: (errValue) => void) => U): Observable<U> {
+    next: (value: T, error: (errValue: any) => void) => U): Observable<U> {
     return new Observable<U>(observer => {
       observable.subscribe({
         next: value => observer.next(next(value, observer.error)),

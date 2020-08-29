@@ -3,7 +3,7 @@ import { Observer } from './observer';
 import { SubscriberFunction, Subscription } from './subscription';
 
 export class Subject<T> extends Observable<T> {
-  protected observers: Observer<T>[] = [];
+  protected observers: Array<Observer<T>> = [];
 
   constructor() {
     super((observer: Observer<T>): () => void => {
@@ -16,14 +16,14 @@ export class Subject<T> extends Observable<T> {
 
   public next(value: T): void {
     // Broadcast to all observers
-    this.observers.forEach((observer) => observer.next(value));
+    this.observers.forEach((observer) => (observer as any).next(value));
   }
 
   public error(errValue: unknown): void {
-    this.observers.forEach((observer) => observer.error(errValue));
+    this.observers.forEach((observer) => (observer as any).error(errValue));
   }
 
   public complete(): void {
-    this.observers.forEach((observer) => observer.complete());
+    this.observers.forEach((observer) => (observer as any).complete());
   }
 }
