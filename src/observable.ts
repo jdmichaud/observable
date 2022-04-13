@@ -104,12 +104,12 @@ export class Observable<T> {
   }
 
   // Returns itself
-  observable() : Observable<T> {
+  observable(): Observable<T> {
     return this;
   }
 
   // Converts items to an Observable
-  static of<T>(...items: Array<T>) : Observable<T> {
+  static of<T>(...items: Array<T>): Observable<T> {
     return new Observable(observer => {
       items.forEach(i => observer.next(i));
       observer.complete();
