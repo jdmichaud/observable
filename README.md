@@ -65,8 +65,6 @@ answer.next(666);
 
 # Useful shortcuts
 
-Additional API to facilitate some workflow are provided.
-
 ## `all`
 
 `all` will wait for all the provided observable to have a value and will then
