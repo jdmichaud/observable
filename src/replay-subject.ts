@@ -1,6 +1,6 @@
 import { Observable } from './observable';
 import { FullObserver, Observer } from './observer';
-import { SubscriberFunction, Subscription } from './subscription';
+import { Subscription } from './subscription';
 
 /**
  * Will replay the previous calls to next, complete and error to a newly
