@@ -27,15 +27,22 @@ export class BehaviorSubject<T> extends Subject<T> {
    */
   static fromSubject<T>(subject: Subject<T>): Promise<BehaviorSubject<T>> {
     return new Promise(resolve => {
+      let initialized = false;
       const subscription = subject.subscribe(value => {
-        const behaviorSubject = new BehaviorSubject<T>(value);
-        subscription.unsubscribe();
-        subject.subscribe({
-          next: value => behaviorSubject.next(value),
-          error: error => behaviorSubject.error(error),
-          complete: () => behaviorSubject.complete(),
-        });
-        resolve(behaviorSubject);
+        if (!initialized) {
+          initialized = true;
+          const behaviorSubject = new BehaviorSubject<T>(value);
+          subject.subscribe({
+            next: value => behaviorSubject.next(value),
+            error: error => behaviorSubject.error(error),
+            complete: () => behaviorSubject.complete(),
+          });
+          // We can only unsubscribe asynchonously when we are subscribing.
+          setTimeout(() => {
+            subscription.unsubscribe();
+            resolve(behaviorSubject);
+          }, 0);
+        }
       });
     });
   }
