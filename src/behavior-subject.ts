@@ -1,3 +1,5 @@
+import { Observer } from './observer';
+import { Subscription } from './subscription';
 import { Subject } from './subject';
 
 /**
@@ -36,6 +38,17 @@ export class BehaviorSubject<T> extends Subject<T> {
       throw this.errValue;
     }
     return this.last;
+  }
+
+  /**
+   * Notifies subscribing observer immediatly.
+   */
+  public subscribe(observer: Observer<T> | ((value: T) => void),
+    error: (errValue: any) => void = () => {},
+    complete: () => void = () => {}): Subscription<T> {
+    const subscription = super.subscribe(observer, error, complete);
+    (subscription as any).observer.next(this.last);
+    return subscription;
   }
 
   protected hasError(): boolean {

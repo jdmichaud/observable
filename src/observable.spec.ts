@@ -35,7 +35,7 @@ describe('Observable', () => {
     const subscription = observable.subscribe({
       error: errorMock,
     });
-    expect(errorMock).toBeCalledWith('error!');
+    expect(errorMock).toHaveBeenCalledWith('error!');
   });
 
   it('shall call complete on the observable', () => {
