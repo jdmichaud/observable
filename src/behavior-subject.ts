@@ -20,6 +20,26 @@ export class BehaviorSubject<T> extends Subject<T> {
     this.next(value);
   }
 
+  /**
+   * Create a BehaviorSubject from a Subject.
+   * The call is asynchronous and resolves once the first value is received.
+   * Subsequent values are then forwarded.
+   */
+  static fromSubject<T>(subject: Subject<T>): Promise<BehaviorSubject<T>> {
+    return new Promise(resolve => {
+      const subscription = subject.subscribe(value => {
+        const behaviorSubject = new BehaviorSubject<T>(value);
+        subscription.unsubscribe();
+        subject.subscribe({
+          next: value => behaviorSubject.next(value),
+          error: error => behaviorSubject.error(error),
+          complete: () => behaviorSubject.complete(),
+        });
+        resolve(behaviorSubject);
+      });
+    });
+  }
+
   public error(errValue: unknown): void {
     this.errValue = errValue;
     super.error(errValue);
